@@ -11,6 +11,8 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
+import "./server"
+
 function App(){
   return (
     <BrowserRouter>

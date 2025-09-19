@@ -43,7 +43,7 @@ header .site-logo {
 }
 
 header .site-logo img{
-    width: 15%;
+    width: 27%;
 }
 
 header a {
@@ -217,11 +217,11 @@ header a:hover {
     background-color: #E17654;
 }
 
-.snack-type.rugged:hover, .snack-type.rugged.selected {
+.snack-type.street-food:hover, .snack-type.street-food.selected {
     background-color: #115E59;
 }
 
-.snack-type.luxury:hover, .snack-type.luxury.selected {
+.snack-type.fruit:hover, .snack-type.fruit.selected {
     background-color: #161616;
 }
 
