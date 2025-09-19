@@ -23,7 +23,7 @@ export default function SnackDetail(){
                         <img src={snack.imageUrl} alt={snack.name} />
                         <i className={`snack-type ${snack.type} selected`}>{snack.type}</i>
                         <h2>{snack.name}</h2>
-                        <p className="snack-price"><span>${snack.pricePhP}</span></p>
+                        <p className="snack-price"><span>₱{snack.pricePhP}</span></p>
                         <p>{snack.description}</p>
                         
                     </div>
