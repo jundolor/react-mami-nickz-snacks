@@ -6,28 +6,24 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Snacks from "./pages/Snacks"
 import SnackDetail from "./pages/SnackDetail"
-import logoImg from "./assets/images/mami-nickz-logo.png"
+import Layout from './components/Layout';
 import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import "./server"
 
 function App(){
   return (
     <BrowserRouter>
-      <header>
-        <Link className='site-logo' to="/"><img src={logoImg} alt="Mami Nickz Logo" /></Link>
-        <nav>
-          <Link to="/about">About</Link>
-          <Link to="/snacks">Snacks</Link>
-        </nav>
-      </header>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Layout />}>
+          
+        <Route index element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/snacks' element={<Snacks />} />
         <Route path='/snacks/:id' element={<SnackDetail />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
