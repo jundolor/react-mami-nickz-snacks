@@ -4,8 +4,8 @@ import './index.css';
 //import App from './App';
 import Home from "./pages/Home"
 import About from "./pages/About"
-import Snacks from "./pages/Snacks"
-import SnackDetail from "./pages/SnackDetail"
+import Snacks from "./pages/Snacks/Snacks"
+import SnackDetail from "./pages/Snacks/SnackDetail"
 import Layout from './components/Layout';
 import reportWebVitals from './reportWebVitals';
 
