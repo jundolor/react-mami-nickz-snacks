@@ -24,9 +24,9 @@ function App(){
       <Routes>
           <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/snacks' element={<Snacks />} />
-          <Route path='/snacks/:id' element={<SnackDetail />} />
+          <Route path='about' element={<About />} />
+          <Route path='snacks' element={<Snacks />} />
+          <Route path='snacks/:id' element={<SnackDetail />} />
 
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />

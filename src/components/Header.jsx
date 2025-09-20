@@ -7,6 +7,7 @@ export default function Header(){
       <header>
         <Link className='site-logo' to="/"><img src={logoImg} alt="Mami Nickz Logo" /></Link>
         <nav>
+          <Link to="/host">Host</Link>
           <Link to="/about">About</Link>
           <Link to="/snacks">Snacks</Link>
         </nav>
