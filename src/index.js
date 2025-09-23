@@ -9,6 +9,8 @@ import SnackDetail from "./pages/Snacks/SnackDetail"
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
 import Reviews from "./pages/Host/Reviews"
+import HostSnacks from './pages/Host/HostSnacks';
+import HostSnackDetail from './pages/Host/HostSnackDetail';
 import Layout from './components/Layout';
 import HostLayout from './components/HostLayout';
 
@@ -32,6 +34,8 @@ function App(){
             <Route index element={<Dashboard />} />
             <Route path='income' element={<Income />} />
             <Route path='reviews' element={<Reviews />} />
+            <Route path='snacks' element={<HostSnacks />} />
+            <Route path='snacks/:id' element={<HostSnackDetail />} />
           </Route>
         </Route>
       </Routes>

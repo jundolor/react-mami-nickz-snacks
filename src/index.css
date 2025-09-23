@@ -326,3 +326,43 @@ i[class*='snack-type-'] {
     text-decoration: underline;
     font-weight: 600;
 }
+
+.host-snack-link-wrapper {
+    color: unset;
+    text-decoration: unset;
+}
+
+.host-snack-list{
+    padding-inline: 26px;
+}
+
+.host-snacks-title{
+    padding-inline: 26px;
+}
+
+
+.host-snack-single{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 15px;
+    padding-block: 18px;
+    padding-left: 24px;
+}
+
+.host-snack-single > img {
+    height: 70px;
+    border-radius: 5px;
+    margin-right: 17px;
+}
+
+.host-snack-info h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-block: 10px;
+}
+
+.host-snack-info p{
+    margin-block: 10px;
+}
+
