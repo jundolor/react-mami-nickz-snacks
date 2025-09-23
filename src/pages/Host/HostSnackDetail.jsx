@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams  } from "react-router-dom";
+import { useParams, Link  } from "react-router-dom";
 
 export default function HostSnackDetail(){
     const { id } = useParams()
@@ -16,11 +16,23 @@ export default function HostSnackDetail(){
         return <h1>Loading ....</h1>
     }
     return (
-        <div>
-            <img src={currentSnack.imageUrl} width={150} alt={currentSnack.name} />
-            <h2>{currentSnack.name}</h2>
-            <p>{currentSnack.pricePhP}</p>
-            <p>{currentSnack.type}</p>
-        </div>
+        <section>
+            <Link
+                to='..'
+                relative="path" //could be relative to route
+                className="back-button"
+            >&larr; <span>Back to all snacks</span></Link>
+            <div className="host-snack-detail-layout-container">
+                <div className="host-snack-detail">
+                    <img src={currentSnack.imageUrl} alt={currentSnack.name} />
+                    <div className="host-snack-detail-info-text">
+                        <i className={`snack-type snack-type-${currentSnack.type}`}>{currentSnack.type}</i>
+                        <h3>{currentSnack.name}</h3>
+                        <h4>₱{currentSnack.pricePhP}</h4>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
     )
 }
