@@ -2,15 +2,15 @@ import React from "react";
 import { useParams  } from "react-router-dom";
 
 export default function HostSnackDetail(){
-    //const { id } = useParams()
-    const params = useParams()
+    const { id } = useParams()
+    //const params = useParams()
     const [currentSnack, setCurrentSnack] = React.useState(null)
 
     React.useEffect(() => {
-        fetch(`/api/host/snacks/${params.id}`)
+        fetch(`/api/host/snacks/${id}`)
             .then(res => res.json())
             .then(data => setCurrentSnack(data.snacks))
-    }, [])
+    }, [id])
 
     if(!currentSnack) {
         return <h1>Loading ....</h1>
