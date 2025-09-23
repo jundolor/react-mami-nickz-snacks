@@ -40,7 +40,7 @@ createServer({
 
         this.get("/host/snacks/:id", (schema, request) => {
             const id = request.params.id
-            return schema.snacks.where({id, hostId: "123"})
+            return schema.snacks.findBy({id, hostId: "123"})
         })
     }
 })
