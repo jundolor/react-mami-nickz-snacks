@@ -1,7 +1,9 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 
 export default function HostSnackPricing(){
+    const { currentSnack} = useOutletContext()
     return (
-        <h1>HostSnackPricing here</h1>
+        <h3 className="host-snack-price">₱{currentSnack.pricePhP}</h3>
     )
 }

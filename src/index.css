@@ -432,3 +432,28 @@ i[class*='snack-type-'] {
     text-decoration: underline;
     font-weight: 700;
 }
+
+.host-snack-detail-info > h4 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.host-snack-detail-info > h4 > span {
+    font-weight: 500;
+}
+
+.host-snack-price{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.host-snack-price > span {
+    font-size: 16px;
+    color: #4D4D4D;
+}
+
+.host-span-detail-image {
+    height: 100px;
+    border-radius: 5px;
+}

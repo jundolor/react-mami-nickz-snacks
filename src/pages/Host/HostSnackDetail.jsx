@@ -60,7 +60,7 @@ export default function HostSnackDetail(){
                         Photos
                     </NavLink>
                 </nav>
-            <Outlet />
+            <Outlet context={{currentSnack}} />
             </div>
         </section>
     )
