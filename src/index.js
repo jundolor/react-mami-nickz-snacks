@@ -13,6 +13,9 @@ import HostSnacks from './pages/Host/HostSnacks';
 import HostSnackDetail from './pages/Host/HostSnackDetail';
 import Layout from './components/Layout';
 import HostLayout from './components/HostLayout';
+import HostSnackInfo from './pages/Host/HostSnackInfo';
+import HostSnackPhotos from './pages/Host/HosSnackPhotos';
+import HostSnackPricing from './pages/Host/HostSnackPricing';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -35,7 +38,11 @@ function App(){
             <Route path='income' element={<Income />} />
             <Route path='reviews' element={<Reviews />} />
             <Route path='snacks' element={<HostSnacks />} />
-            <Route path='snacks/:id' element={<HostSnackDetail />} />
+            <Route path='snacks/:id' element={<HostSnackDetail />}>
+              <Route index element={<HostSnackInfo />} />
+              <Route path='pricing' element={<HostSnackPricing />} />
+              <Route path='photos' element={<HostSnackPhotos />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
