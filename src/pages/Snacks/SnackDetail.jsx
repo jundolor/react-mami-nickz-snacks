@@ -1,8 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 export default function SnackDetail(){
     const params = useParams()
+    const location = useLocation()
     const [snack, setSnack] = React.useState(null)
 
     React.useEffect(()=>{
@@ -15,8 +16,15 @@ export default function SnackDetail(){
     }
     , [params.id])
 
+    const search = location.state?.search || ""
+
     return (
         <div className="snack-detail-container">
+            <Link
+                to={`..${search}`}
+                relative="path"
+                className="back-button"
+            >&larr; <span>Back to snacks</span> </Link>
             {
                 snack ? (
                     <div className="snack-detail">

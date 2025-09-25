@@ -7,6 +7,7 @@ export default function Snacks(){
     const [snacks, setSnacks] = React.useState([])
 
     const snackFilter = snackParams.get("type")
+    console.log(snackParams.toString())
     React.useEffect(() => {
         fetch("api/snacks")
         .then(res => res.json())
@@ -22,7 +23,7 @@ export default function Snacks(){
 
     const snackElements = displayedSnacks.map(snack => (
         <div key={snack.id} className="snack-tile">
-            <Link to={snack.id}>
+            <Link to={snack.id} state={{search: `?${snackParams.toString()}` }}>
                 <img src={snack.imageUrl} alt="snack delight" />
                 <div className="snack-info">
                     <h3>{snack.name}</h3>
