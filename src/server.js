@@ -1,5 +1,6 @@
 
-import { createServer, Model } from "miragejs";
+import { createServer, Model} from "miragejs";
+//remember to import , Response  simulating errors
 
 createServer({
     models: {
@@ -24,8 +25,10 @@ createServer({
     routes(){
         this.namespace = 'api'
         this.logging= false
+        this.timing = 2000
 
         this.get("/snacks", (schema, request) => {
+            //return new Response(400, {}, {error: "Error fetching data"})
             return schema.snacks.all()
         })
 
