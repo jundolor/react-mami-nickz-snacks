@@ -17,6 +17,7 @@ export default function SnackDetail(){
     , [params.id])
 
     const search = location.state?.search || ""
+    const type = location.state?.type || "all"
 
     return (
         <div className="snack-detail-container">
@@ -24,7 +25,7 @@ export default function SnackDetail(){
                 to={`..${search}`}
                 relative="path"
                 className="back-button"
-            >&larr; <span>Back to snacks</span> </Link>
+            >&larr; <span>Back to { type } snacks</span> </Link>
             {
                 snack ? (
                     <div className="snack-detail">

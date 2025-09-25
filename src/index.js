@@ -16,6 +16,7 @@ import HostLayout from './components/HostLayout';
 import HostSnackInfo from './pages/Host/HostSnackInfo';
 import HostSnackPhotos from './pages/Host/HosSnackPhotos';
 import HostSnackPricing from './pages/Host/HostSnackPricing';
+import NotFound from './pages/NotFound';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -44,6 +45,8 @@ function App(){
               <Route path='photos' element={<HostSnackPhotos />} />
             </Route>
           </Route>
+
+          <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

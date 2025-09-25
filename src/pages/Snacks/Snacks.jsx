@@ -23,7 +23,13 @@ export default function Snacks(){
 
     const snackElements = displayedSnacks.map(snack => (
         <div key={snack.id} className="snack-tile">
-            <Link to={snack.id} state={{search: `?${snackParams.toString()}` }}>
+            <Link 
+            to={snack.id} 
+            state={{
+                search: `?${snackParams.toString()}` ,
+                type: snackFilter
+            }}
+        >
                 <img src={snack.imageUrl} alt="snack delight" />
                 <div className="snack-info">
                     <h3>{snack.name}</h3>

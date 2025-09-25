@@ -43,7 +43,7 @@ header .site-logo {
 }
 
 header .site-logo img{
-    width: 27%;
+    width: 25%;
 }
 
 a.active-link {
@@ -465,4 +465,21 @@ i[class*='snack-type-'] {
 .host-span-detail-image {
     height: 100px;
     border-radius: 5px;
+}
+
+.not-found-container{
+    padding: 26px;
+}
+
+.not-found-container .link-button{
+    width: 100%;
+    background-color: #161616;
+    color:white;
+    box-sizing: border-box;
+}
+
+@media (max-width:499px) {
+    header .site-logo img{
+    width: 80%;
+}
 }
