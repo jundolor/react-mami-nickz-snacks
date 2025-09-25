@@ -22,7 +22,7 @@ export default function Snacks(){
 
     const snackElements = displayedSnacks.map(snack => (
         <div key={snack.id} className="snack-tile">
-            <Link to={`/snacks/${snack.id}`}>
+            <Link to={snack.id}>
                 <img src={snack.imageUrl} alt="snack delight" />
                 <div className="snack-info">
                     <h3>{snack.name}</h3>

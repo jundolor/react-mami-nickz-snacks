@@ -13,7 +13,7 @@ export default function HostSnacks(){
 
     const  hostSnacksEls = snacks.map(snack => (
         <Link
-            to = {`/host/snacks/${snack.id}`}
+            to = {snack.id}
             key = {snack.id}
             className="host-snack-link-wrapper"
         >
