@@ -196,6 +196,15 @@ footer {
     padding-inline: 23px
 }
 
+.snack-list-filter-buttons{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.snack-list-filter-buttons > a{
+    margin-right: 15px;
+}
+
 .snack-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -243,7 +252,7 @@ footer {
     color: #FFEAD0;
 }
 
-.snack-type.simple:hover, .snack-type.simple.selected {
+.snack-type.simple:hover, .snack-type.simple.selected, .snack-type.snack-meal:hover, .snack-type.snack-meal.selected {
     background-color: #E17654;
 }
 
