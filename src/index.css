@@ -535,6 +535,10 @@ i[class*='snack-type-'] {
     font-family: "Inter", sans-serif;
 }
 
+.login-first{
+    color: red;
+}
+
 
 @media (max-width:499px) {
     header .site-logo img{
