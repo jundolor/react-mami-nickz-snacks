@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Snacks from "./pages/Snacks/Snacks"
 import SnackDetail from "./pages/Snacks/SnackDetail"
+import Login from './pages/Login';
 import Dashboard from "./pages/Host/Dashboard"
 import Income from "./pages/Host/Income"
 import Reviews from "./pages/Host/Reviews"
@@ -17,6 +18,7 @@ import HostSnackInfo from './pages/Host/HostSnackInfo';
 import HostSnackPhotos from './pages/Host/HosSnackPhotos';
 import HostSnackPricing from './pages/Host/HostSnackPricing';
 import NotFound from './pages/NotFound';
+import AuthRequired from './components/AuthRequired';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -33,16 +35,19 @@ function App(){
           <Route path='about' element={<About />} />
           <Route path='snacks' element={<Snacks />} />
           <Route path='snacks/:id' element={<SnackDetail />} />
+          <Route path='login' element={<Login />} />
 
-          <Route path="host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path='income' element={<Income />} />
-            <Route path='reviews' element={<Reviews />} />
-            <Route path='snacks' element={<HostSnacks />} />
-            <Route path='snacks/:id' element={<HostSnackDetail />}>
-              <Route index element={<HostSnackInfo />} />
-              <Route path='pricing' element={<HostSnackPricing />} />
-              <Route path='photos' element={<HostSnackPhotos />} />
+          <Route element={<AuthRequired />}>
+            <Route path="host" element={<HostLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path='income' element={<Income />} />
+              <Route path='reviews' element={<Reviews />} />
+              <Route path='snacks' element={<HostSnacks />} />
+              <Route path='snacks/:id' element={<HostSnackDetail />}>
+                <Route index element={<HostSnackInfo />} />
+                <Route path='pricing' element={<HostSnackPricing />} />
+                <Route path='photos' element={<HostSnackPhotos />} />
+              </Route>
             </Route>
           </Route>
 
