@@ -14,7 +14,7 @@ export default function Header(){
           <NavLink to="/about" className={({isActive}) => isActive? "active-link": null}>About</NavLink>
           <NavLink to="/snacks" className={({isActive}) => isActive? "active-link": null}>Snacks</NavLink>
           <Link to= "login" className="login-link">
-            <img src={avatarLogo} className="login-icon" />
+            <img src={avatarLogo} className="login-icon" alt="login" />
           </Link>
         </nav>
       </header>
