@@ -1,10 +1,10 @@
 
-import { createServer, Model} from "miragejs";
-//remember to import , Response  simulating errors
+import { createServer, Model, Response} from "miragejs";
 
 createServer({
     models: {
-        snacks: Model
+        snacks: Model,
+        users: Model
     },
 
     seeds(server){
@@ -19,6 +19,8 @@ createServer({
         server.create("snack", {id: "5", name: "Lumpia", pricePhP: 3, description: "Lumpia roll is a beloved Filipino street food made of thin crepes or wrappers filled with a savory mix of vegetables, meat, or both. It’s rolled tightly, deep-fried to a golden crisp, and enjoyed with a sweet and tangy dipping sauce. Crunchy and flavorful, it’s a go-to merienda that’s both filling and budget-friendly.", imageUrl: "https://ik.imagekit.io/maminickz/snacks/lumpia-roll.png", type: "snack-meal", hostId: "789"})
 
         server.create("snack", {id: "6", name: "Fries", pricePhP: 10, description: "Fries are a classic street food snack made from thinly sliced potatoes deep-fried until golden and crispy. In the Philippines, they’re often served in paper cups or bags, sprinkled with cheese powder, barbecue seasoning, or salt. Affordable and tasty, they’re a favorite quick bite for students and street-goers alike.", imageUrl: "https://ik.imagekit.io/maminickz/snacks/fries.png", type: "street-food", hostId: "789"})
+
+        server.create("user", {id: "123", email: "b@b.com", password: "p123", name: "bob"})
 
     },
 
@@ -44,6 +46,22 @@ createServer({
         this.get("/host/snacks/:id", (schema, request) => {
             const id = request.params.id
             return schema.snacks.findBy({id, hostId: "123"})
+        })
+
+        this.post("/login", (schema, request) => {
+            const {email, password} = JSON.parse(request.requestBody)
+            //☢️ THIS IS ONLY A SIMULATION
+            const foundUser = schema.users.findBy({email, password})
+            if(!foundUser) {
+                return new Response(401, {}, {message: "No user found"})
+            }
+
+            //dont return the password
+            foundUser.password = undefined
+            return {
+                user: foundUser,
+                token: 'sending token'
+            }
         })
     }
 })

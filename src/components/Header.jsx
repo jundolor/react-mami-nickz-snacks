@@ -4,8 +4,9 @@ import logoImg from "../assets/images/mami-nickz-logo.png"
 import avatarLogo from "../assets/images/avatar-icon.png"
 
 export default function Header(){
-
-
+    function fakeLogOut(){
+      localStorage.removeItem("loggedin")
+    }
     return(
       <header>
         <Link className='site-logo' to="/"><img src={logoImg} alt="Mami Nickz Logo" /></Link>
@@ -16,6 +17,7 @@ export default function Header(){
           <Link to= "login" className="login-link">
             <img src={avatarLogo} className="login-icon" alt="login" />
           </Link>
+          <button onClick={fakeLogOut}>❌</button>
         </nav>
       </header>
     )
