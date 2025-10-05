@@ -1,3 +1,48 @@
+import { initializeApp } from "firebase/app"
+import { getFirestore, collection, doc, getDocs, getDoc, query, where } from "firebase/firestore/lite";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBpPxcUXBLBCyQlsqKQmdI2t_GsOYBlAOo",
+  authDomain: "maminickz.firebaseapp.com",
+  projectId: "maminickz",
+  storageBucket: "maminickz.firebasestorage.app",
+  messagingSenderId: "300083081457",
+  appId: "1:300083081457:web:62d26e0e950bcdc6407950"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
+
+const snackCollectionRef = collection(db, "snacks")
+
+export async function getSnacks() {
+    const snapshot = await getDocs(snackCollectionRef)
+    const snacks = snapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }))
+    return snacks
+}
+
+export async function getSnack(id) {
+    const docRef = doc(db, "snacks", id)
+    const snapshot = await getDoc(docRef)
+    return {
+        ...snapshot.data(),
+        id: snapshot.id
+    }
+}
+
+export async function getHostSnacks() {
+    const q = query(snackCollectionRef, where("hostId", "==", "123"))
+    const snapshot = await getDocs(q)
+    const snacks = snapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }))
+    return snacks
+}
+
 // A function whose only purpose is to delay execution
 // for the specified # of milliseconds when used w/ `await`
 // e.g. inside an async function:
@@ -7,6 +52,8 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(() => resolve(), ms))
 }
 */
+
+/*
 export async function getSnacks() {
     const res = await fetch("/api/snacks")
     console.log('res.ok check')
@@ -43,20 +90,6 @@ export async function getHostSnacks(id) {
     return data.snacks
 }
 
-/*
-export async function getHostVans(id) {
-    const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw {
-            message: "Failed to fetch vans",
-            statusText: res.statusText,
-            status: res.status
-        }
-    }
-    const data = await res.json()
-    return data.vans
-}
 */
 export async function loginUser(creds) {
     const res = await fetch("/api/login",
