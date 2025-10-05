@@ -9,6 +9,7 @@ export default function Login() {
 
     const location = useLocation()
     const navigate = useNavigate()
+    const fromPage = location.state?.fromPage || '/host'
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -18,12 +19,11 @@ export default function Login() {
         .then(data => {
             setError(null)
             localStorage.setItem("loggedin", true)
-            navigate("/host", {replace: true})
+            navigate(fromPage, {replace: true})
         })
         .catch(err => {
             console.log("error happened")
             setError(JSON.parse(err))
-            console.log(error)
         })
         .finally(() => {
             setStatus("idle")

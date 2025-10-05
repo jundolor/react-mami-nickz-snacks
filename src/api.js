@@ -27,6 +27,22 @@ export async function getSnacks() {
     return data.snacks
 }
 
+export async function getHostSnacks(id) {
+    const url = id ? `/api/host/snacks/${id}` : "/api/host/snacks"
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw (
+            JSON.stringify({
+            message: "Failed to fetch snacks",
+            statusText: res.statusText,
+            status: res.status
+            })
+        )
+    }
+    const data = await res.json()
+    return data.snacks
+}
+
 /*
 export async function getHostVans(id) {
     const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
