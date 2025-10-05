@@ -14,6 +14,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 const snackCollectionRef = collection(db, "snacks")
+const usersCollectionRef = collection(db, "users")
 
 export async function getSnacks() {
     const snapshot = await getDocs(snackCollectionRef)
@@ -41,6 +42,27 @@ export async function getHostSnacks() {
         id: doc.id
     }))
     return snacks
+}
+
+
+export async function loginUser(creds) {
+    //creds is an object with key values for email and password
+    const q = query(usersCollectionRef,  where("email", "==", creds.email), where("password", "==", creds.password))
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+        throw (
+            JSON.stringify({
+                message: "No user found",
+                statusText: "error validating user",
+                status: 401
+            })
+        )
+    }
+
+    const data = querySnapshot.docs[0].data();
+
+    return data
 }
 
 // A function whose only purpose is to delay execution
@@ -91,6 +113,8 @@ export async function getHostSnacks(id) {
 }
 
 */
+/*
+
 export async function loginUser(creds) {
     const res = await fetch("/api/login",
         { method: "post", body: JSON.stringify(creds) }
@@ -106,13 +130,8 @@ export async function loginUser(creds) {
                 status: res.status
             })
         )
-        /*
-        throw {
-            message: data.message,
-            statusText: res.statusText,
-            status: res.status
-        }*/
     }
 
     return data
 }
+*/
