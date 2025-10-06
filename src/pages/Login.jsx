@@ -47,10 +47,10 @@ export default function Login() {
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "2rem auto" }}>
+    <div className="login-container">
       <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="email"
           name="email"
@@ -59,8 +59,6 @@ export default function Login() {
           onChange={handleChange}
           required
         />
-        <br />
-        <br />
         <input
           type="password"
           name="password"

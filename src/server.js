@@ -29,6 +29,9 @@ createServer({
         this.logging= false
         //this.timing = 2000
         this.passthrough("https://firestore.googleapis.com/**")
+        //this.passthrough("https://firestore.googleapis.com/**")
+        this.passthrough("https://identitytoolkit.googleapis.com/**")
+        this.passthrough("https://securetoken.googleapis.com/**")
 
         this.get("/snacks", (schema, request) => {
             //return new Response(400, {}, {error: "Error fetching data"})
