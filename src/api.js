@@ -14,7 +14,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 const snackCollectionRef = collection(db, "snacks")
-const usersCollectionRef = collection(db, "users")
+//const usersCollectionRef = collection(db, "users")
 
 export async function getSnacks() {
     const snapshot = await getDocs(snackCollectionRef)
