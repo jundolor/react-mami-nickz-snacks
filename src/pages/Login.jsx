@@ -1,77 +1,86 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom"
-import { loginUser } from "../api";
+import { useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "../services/authService"; // from the Firebase Auth service we built earlier
 
 export default function Login() {
-    const [loginFormData, setLoginFormData]= React.useState({email: "", password: ""})
-    const [status, setStatus] = React.useState("idle")
-    const [error, setError] = React.useState(null)
+  const [loginFormData, setLoginFormData] = React.useState({
+    email: "",
+    password: "",
+  });
+  const [status, setStatus] = React.useState("idle"); // "idle" | "submitting"
+  const [error, setError] = React.useState(null);
 
-    const location = useLocation()
-    const navigate = useNavigate()
-    const fromPage = location.state?.fromPage || '/host'
+  const location = useLocation();
+  const navigate = useNavigate();
+  const fromPage = location.state?.fromPage || "/host";
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        //console.log(loginFormData)
-        setStatus("submitting")
-        loginUser(loginFormData)
-        .then(data => {
-            setError(null)
-            localStorage.setItem("loggedin", true)
-            navigate(fromPage, {replace: true})
-        })
-        .catch(err => {
-            console.log("error happened")
-            setError(JSON.parse(err))
-        })
-        .finally(() => {
-            setStatus("idle")
-        })
+  // ✅ handle input changes
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setLoginFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  // ✅ handle form submission
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("submitting");
+    setError(null);
+
+    try {
+      const result = await loginUser(loginFormData);
+
+      if (result.success) {
+        localStorage.setItem("loggedin", "true");
+        navigate(fromPage, { replace: true });
+      } else {
+        setError(result.message);
+      }
+    } catch (err) {
+      console.error("Unexpected login error:", err);
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setStatus("idle");
     }
+  }
 
-    function handleChange(e) {
-        const { name, value} = e.target 
-        setLoginFormData(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
+  return (
+    <div style={{ maxWidth: "400px", margin: "2rem auto" }}>
+      <h2>Login</h2>
 
-    return (
-        <div className="login-container">
-            {
-                location.state?.message &&
-                <h3 className="login-first">{location.state.message}</h3>
-            }
-            <h1>Sign in to your account</h1>
-            {
-                error?.message &&
-                <h3 className="login-first">{error.message}</h3>
-            }
-            <form onSubmit={handleSubmit} className="login-form">
-                <input 
-                    name="email"
-                    onChange={handleChange}
-                    type="email"
-                    placeholder="Email address"
-                    value={loginFormData.email}
-                />
-                <input 
-                    name="password"
-                    onChange={handleChange}
-                    type="password"
-                    placeholder="Password"
-                    value={loginFormData.password}
-                />
-                <button 
-                    disabled={status === "submitting"}
-                >
-                    {
-                        status === "submitting" ? "Logging in" : "Log in"
-                    }
-                </button>
-            </form>
-        </div>
-    )
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={loginFormData.email}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={loginFormData.password}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <br />
+        <button type="submit" disabled={status === "submitting"}>
+          {status === "submitting" ? "Logging in..." : "Login"}
+        </button>
+      </form>
+
+      {error && (
+        <p style={{ color: "red", marginTop: "1rem" }}>
+          ⚠️ {error}
+        </p>
+      )}
+    </div>
+  );
 }
